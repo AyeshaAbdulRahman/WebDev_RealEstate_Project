@@ -1,72 +1,162 @@
-<header id="header" class="transparent-header-modern fixed-header-bg-white w-100">
-            <div class="top-header bg-secondary">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <ul class="top-contact list-text-white  d-table">
-                                <li><a href="#"><i class="fas fa-phone-alt text-success mr-1"></i>03231323432</a></li>
-                                <li><a href="#"><i class="fas fa-envelope text-success mr-1"></i>ayesharahman@gmail.com</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="top-contact float-right">
-                                <ul class="list-text-white d-table">
-								<li><i class="fas fa-user text-success mr-1"></i>
-								<?php  if(isset($_SESSION['uemail']))
-								{ ?>
-								<a href="logout.php">Logout</a>&nbsp;&nbsp;<?php } else { ?>
-								<a href="login.php">Login</a>&nbsp;&nbsp;
-								
-								| </li>
-								<li><i class="fas fa-user-plus text-success mr-1"></i><a href="register.php"> Register</li><?php } ?>
-								</ul>
-                            </div>
-                        </div>
-                    </div>
+<?php
+session_start();
+require("config.php");
+////code
+ 
+if(!isset($_SESSION['auser']))
+{
+	header("location:index.php");
+}
+?>  
+  <div class="header">
+			
+				<!-- Logo -->
+                <div class="header-left">
+                    <a href="dashboard.php" class="logo">
+						<img src="assets/img/rsadmin.png" alt="Logo">
+					</a>
+					<a href="dashboard.php" class="logo logo-small">
+						<img src="assets/img/logo-small.png" alt="Logo" width="30" height="30">
+					</a>
                 </div>
-            </div>
-            <div class="main-nav secondary-nav hover-success-nav py-2">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <nav class="navbar navbar-expand-lg navbar-light p-0"> <a class="navbar-brand position-relative" href="index.php"><img class="nav-logo" src="images/logo/restatelg.png" alt=""></a>
-                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                    <ul class="navbar-nav mr-auto">
-                                        <li class="nav-item dropdown"> <a class="nav-link" href="index.php" role="button" aria-haspopup="true" aria-expanded="false">Home</a></li>
-										
-										<li class="nav-item"> <a class="nav-link" href="about.php">About</a> </li>
-										
-                                        <li class="nav-item"> <a class="nav-link" href="contact.php">Contact</a> </li>										
-										
-                                        <li class="nav-item"> <a class="nav-link" href="property.php">Properties</a> </li>
-                                        
-                                        <li class="nav-item"> <a class="nav-link" href="agent.php">Agent</a> </li>
+				<!-- /Logo -->
+				
+				<a href="javascript:void(0);" id="toggle_btn">
+					<i class="fe fe-text-align-left"></i>
+				</a>
+				
 
-										
-										<?php  if(isset($_SESSION['uemail']))
-										{ ?>
-										<li class="nav-item dropdown">
-											<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Account</a>
-											<ul class="dropdown-menu">
-												<li class="nav-item"> <a class="nav-link" href="profile.php">Profile</a> </li>
-												<!-- <li class="nav-item"> <a class="nav-link" href="request.php">Property Request</a> </li> -->
-												<li class="nav-item"> <a class="nav-link" href="feature.php">Your Property</a> </li>
-												<li class="nav-item"> <a class="nav-link" href="logout.php">Logout</a> </li>	
-											</ul>
-                                        </li>
-										<?php } else { ?>
-										<li class="nav-item"> <a class="nav-link" href="login.php">Login/Register</a> </li>
-										<?php } ?>
-										
-                                    </ul>
-                                    
+				
+				<!-- Mobile Menu Toggle -->
+				<a class="mobile_btn" id="mobile_btn">
+					<i class="fa fa-bars"></i>
+				</a>
+				<!-- /Mobile Menu Toggle -->
+				
+				<!-- Header Right Menu -->
+				<ul class="nav user-menu">
+
+					
+					<!-- User Menu -->
+					<!-- <h4 style="color:white;margin-top:13px;text-transform:capitalize;"><?php echo $_SESSION['auser'];?></h4> -->
+					<li class="nav-item dropdown app-dropdown">
+						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+							<span class="user-img"><img class="rounded-circle" src="assets/img/profiles/avatar-01.png" width="31" alt="Ryan Taylor"></span>
+						</a>
+						
+						<div class="dropdown-menu">
+							<div class="user-header">
+								<div class="avatar avatar-sm">
+									<img src="assets/img/profiles/avatar-01.png" alt="User Image" class="avatar-img rounded-circle">
+								</div>
+								<div class="user-text">
+									<h6><?php echo $_SESSION['auser'];?></h6>
+									<p class="text-muted mb-0">Administrator</p>
+								</div>
+							</div>
+							<a class="dropdown-item" href="profile.php">Profile</a>
+							<a class="dropdown-item" href="logout.php">Logout</a>
+						</div>
+					</li>
+
+					<!-- /User Menu -->
+					
+				</ul>
+				<!-- /Header Right Menu -->
+				
+            </div>
+			
+			<!-- header --->
+			
+			
+			
+						<!-- Sidebar -->
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-inner slimscroll">
+					<div id="sidebar-menu" class="sidebar-menu">
+						<ul>
+							<li class="menu-title"> 
+								<span>Main</span>
+							</li>
+							<li> 
+								<a href="dashboard.php"><i class="fe fe-home"></i> <span>Dashboard</span></a>
+							</li>
+							
+							<!-- <li class="menu-title"> 
+								<span>Authentication</span>
+							</li>
+						
+							<li class="submenu">
+								<a href="#"><i class="fe fe-user"></i> <span> Authentication </span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="index.php"> Login </a></li>
+									<li><a href="register.php"> Register </a></li>
 									
-									<a class="btn btn-success d-none d-xl-block" style="border-radius:30px;" href="submitproperty.php">Submit Peoperty</a> 
-                                </div>
-                            </nav>
-                        </div>
-                    </div>
+								</ul>
+							</li> -->
+							<li class="menu-title"> 
+								<span>All Users</span>
+							</li>
+						
+							<li class="submenu">
+								<a href="#"><i class="fe fe-user"></i> <span> All Users </span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="adminlist.php"> Admin </a></li>
+									<li><a href="userlist.php"> Users </a></li>
+									<li><a href="useragent.php"> Agent </a></li>
+									<li><a href="userbuilder.php"> Builder </a></li>
+								</ul>
+							</li>
+
+							<li class="menu-title"> 
+								<span>State & City</span>
+							</li>
+						
+							<li class="submenu">
+								<a href="#"><i class="fe fe-location"></i> <span>State & City</span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="stateadd.php"> State </a></li>
+									<li><a href="cityadd.php"> City </a></li>
+								</ul>
+							</li>
+						
+							<li class="menu-title"> 
+								<span>Property Management</span>
+							</li>
+							<li class="submenu">
+								<a href="#"><i class="fe fe-map"></i> <span> Property</span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="propertyadd.php"> Add Property</a></li>
+									<li><a href="propertyview.php"> View Property </a></li>
+									
+								</ul>
+							</li>
+							
+							
+							
+							<li class="menu-title"> 
+								<span>Query</span>
+							</li>
+							<li class="submenu">
+								<a href="#"><i class="fe fe-comment"></i> <span> Contact,Feedback </span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="contactview.php"> Contact </a></li>
+									<li><a href="feedbackview.php"> Feedback </a></li>
+								</ul>
+							</li>
+							<li class="menu-title"> 
+								<span>About</span>
+							</li>
+							<li class="submenu">
+								<a href="#"><i class="fe fe-browser"></i> <span> About Page </span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="aboutadd.php"> Add About Content </a></li>
+									<li><a href="aboutview.php"> View About </a></li>
+								</ul>
+							</li>
+							
+						</ul>
+					</div>
                 </div>
             </div>
-        </header>
+			<!-- /Sidebar -->
